@@ -143,9 +143,7 @@ fun BoardGameApp(
             composable(route = GameScreen.Game.name) {
                 BoardGameScreen(
                     uiState,
-                    returnToMainScreen = { navController.navigate(GameScreen.Start.name) {
-                        popUpTo(GameScreen.Start.name)
-                    } },
+                    returnToMainScreen = { navController.navigate(GameScreen.Start.name) },
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(dimensionResource(R.dimen.padding_medium))
@@ -153,7 +151,6 @@ fun BoardGameApp(
             }
             // Completion Screen
         }
-
 
 
     }

@@ -43,10 +43,15 @@ fun MainMenuScreen(
             ) */
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_medium)))
             Text(
-                text = "Test Text",// stringResource(R.string.order_cupcakes),
-                style = MaterialTheme.typography.headlineSmall
+                text = stringResource(R.string.menuTitle),
+                style = MaterialTheme.typography.headlineLarge
             )
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
+
+            Text(
+                text = "Pick a game to play!",
+                style = MaterialTheme.typography.bodyMedium
+            )
         }
         Row(modifier = Modifier.weight(1f, false)) {
             Column(

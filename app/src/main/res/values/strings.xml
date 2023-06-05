@@ -5,7 +5,7 @@
     <string name="game">Game</string>
     <string name="completion">Completion</string>
 
-
+    <string name="menuTitle">Board Games!!!</string>
     <string name="back">Back</string>
     <string name="onedevice">One Device</string>
     <string name="multidevice">Multiple Devices</string>
@@ -14,5 +14,11 @@
     <string name="tictactoe">Tic-Tac-Toe</string>
     <string name="chess">Chess</string>
     <string name="checkers">Checkers</string>
+    <string name="connect4">Connect 4</string>
+    <string name="Go">Go</string>
+    <string name="battleship">Battleship</string>
+    <string name="uno">UNO</string>
+    <string name="codenames">Codenames</string>
+
 
 </resources>

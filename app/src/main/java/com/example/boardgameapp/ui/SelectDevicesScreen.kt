@@ -50,9 +50,15 @@ fun SelectDevicesScreen(
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_medium)))
             Text(
                 text = stringResource(curGame),
-                style = MaterialTheme.typography.headlineSmall,
+                style = MaterialTheme.typography.headlineMedium,
             )
             Spacer(modifier = Modifier.height(200.dp))
+
+            Text(
+                text = "How many devices do you want to play on?",
+                style = MaterialTheme.typography.bodyLarge,
+            )
+
             Row(
                 modifier = Modifier
                     .fillMaxWidth()

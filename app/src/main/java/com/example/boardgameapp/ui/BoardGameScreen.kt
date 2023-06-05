@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.AbsoluteCutCornerShape
+import androidx.compose.foundation.shape.CornerBasedShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -23,6 +25,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.boardgameapp.R
 import com.example.boardgameapp.data.GameUIState
 
 @Composable
@@ -31,7 +34,10 @@ fun BoardGameScreen(
     returnToMainScreen: () -> Unit = {},
     modifier: Modifier = Modifier,
 )  {
-    TicTacToe(uiState = uiState, returnToMainScreen = returnToMainScreen)
+    if (uiState.gameName == R.string.tictactoe)
+        TicTacToe(uiState = uiState, returnToMainScreen = returnToMainScreen)
+    else if (uiState.gameName == R.string.chess)
+        Chess(uiState = uiState, returnToMainScreen = returnToMainScreen)
 }
 
 @Composable
@@ -74,6 +80,7 @@ fun TicTacToe(
                             Button(modifier = Modifier
                                 .weight(1f)
                                 .padding(4.dp),
+                                shape = AbsoluteCutCornerShape(0),
                                 onClick = { onGridClick(row, col, board, currentPlayer, winner.value) }) {
                                 Text(text = board.value[row][col] ?: "", color = Color.White)
 
@@ -84,10 +91,10 @@ fun TicTacToe(
                 }
 
                 if (winner.value != null) {
-                    Text(text = if (winner.value != "draw") "Winner: Player ${winner.value}!" else "Draw",
+                    Text(text = if (winner.value != "draw") "Winner: Player ${if (winner.value == "X") 1 else 2}!" else "Draw",
                         modifier = Modifier.padding(4.dp),
                         textAlign = TextAlign.Center)
-                    Button(onClick = { returnToMainScreen }) {
+                    Button(onClick = returnToMainScreen) {
                         Text(text = "Main Menu")
                     }
                 }
@@ -145,4 +152,34 @@ fun checkTicTacToeWinner(board: MutableState<Array<Array<String?>>>): String? {
     }
 
     return "draw"
+}
+
+@Composable
+fun Chess(uiState: GameUIState, returnToMainScreen: () -> Unit) {
+    val board = remember {
+        mutableStateOf(Array(8) { arrayOfNulls<String>(8) })
+    }
+
+    val currentPlayer = remember {
+        mutableStateOf(1) // 1 = White
+    }
+
+    val winner = remember {
+        mutableStateOf<String?>(null)
+    }
+
+    Column(modifier = Modifier
+        .fillMaxSize()
+        // .background()
+        .padding(16.dp)) {
+
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
+            Text(
+                text = stringResource(uiState.gameName),
+                textAlign = TextAlign.Center,
+                fontWeight = FontWeight.Bold,
+                fontSize = 30.sp
+            )
+        }
+    }
 }
