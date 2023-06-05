@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">BoardGameApp</string>
+    <string name="devices">Devices</string>
+    <string name="lobby">Lobby</string>
+    <string name="game">Game</string>
+    <string name="completion">Completion</string>
+
+
+    <string name="back">Back</string>
+    <string name="onedevice">One Device</string>
+    <string name="multidevice">Multiple Devices</string>
+
+
+    <string name="tictactoe">Tic-Tac-Toe</string>
+    <string name="chess">Chess</string>
+    <string name="checkers">Checkers</string>
+
+</resources>
