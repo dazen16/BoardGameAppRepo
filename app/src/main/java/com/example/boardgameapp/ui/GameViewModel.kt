@@ -25,13 +25,13 @@ class GameViewModel : ViewModel() {
         }
     }
 
-    fun setGameID(gameID: String) {
+    /* fun setGameID(gameID: String) {
         _uiState.update { currentState ->
             currentState.copy(
                 gameID = gameID,
             )
         }
-    }
+    } */
     /*
         /**
          * Set the quantity [numberCupcakes] of cupcakes for this order's state and update the price
