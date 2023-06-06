@@ -2,6 +2,7 @@
     <string name="app_name">BoardGameApp</string>
     <string name="devices">Devices</string>
     <string name="lobby">Lobby</string>
+    <string name="join">Join Game</string>
     <string name="game">Game</string>
     <string name="completion">Completion</string>
 
@@ -9,6 +10,10 @@
     <string name="back">Back</string>
     <string name="onedevice">One Device</string>
     <string name="multidevice">Multiple Devices</string>
+    <string name="enterID">Enter a Game ID</string>
+    <string name="joinButton">Join</string>
+
+
 
 
     <string name="tictactoe">Tic-Tac-Toe</string>

@@ -32,6 +32,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.example.boardgameapp.ui.BoardGameScreen
 import com.example.boardgameapp.ui.GameViewModel
+import com.example.boardgameapp.ui.JoinGameScreen
 import com.example.boardgameapp.ui.LobbyScreen
 import com.example.boardgameapp.ui.SelectDevicesScreen
 import com.example.boardgameapp.ui.theme.MainMenuScreen
@@ -41,9 +42,9 @@ enum class GameScreen(@StringRes val title: Int) {
     Start(title = R.string.app_name),
     Devices(title = R.string.devices),
     Lobby(title = R.string.lobby),
+    Join(title = R.string.join),
     Game(title = R.string.game),
     Completion(title = R.string.completion),
-
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -109,9 +110,12 @@ fun BoardGameApp(
             composable(route = GameScreen.Start.name) {
                 MainMenuScreen(
                     // quantityOptions = DataSource.quantityOptions,
-                    onNextButtonClicked = {
+                    onGameSelected = {
                         viewModel.setGame(it)
                         navController.navigate(GameScreen.Devices.name)
+                    },
+                    joinGame = {
+                        navController.navigate(GameScreen.Join.name)
                     },
                     modifier = Modifier
                         .fillMaxSize()
@@ -134,6 +138,16 @@ fun BoardGameApp(
             composable(route = GameScreen.Lobby.name) {
                 LobbyScreen(
                     uiState,
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(dimensionResource(R.dimen.padding_medium))
+                )
+            }
+            // Join Game Screen
+            composable(route = GameScreen.Join.name) {
+                JoinGameScreen(
+                    uiState,
+                    onJoin = { navController.navigate(GameScreen.Lobby.name) },
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(dimensionResource(R.dimen.padding_medium))

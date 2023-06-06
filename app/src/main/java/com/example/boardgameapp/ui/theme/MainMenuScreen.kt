@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
@@ -23,7 +24,8 @@ import com.example.boardgameapp.data.GameType.games
 
 @Composable
 fun MainMenuScreen(
-    onNextButtonClicked: (Int) -> Unit,
+    onGameSelected: (Int) -> Unit,
+    joinGame: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     Column(
@@ -48,12 +50,20 @@ fun MainMenuScreen(
             )
             Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_small)))
 
+            Button(
+                onClick = joinGame,
+            ) {
+                Text("Join Game")
+            }
+
             Text(
                 text = "Pick a game to play!",
                 style = MaterialTheme.typography.bodyMedium
             )
         }
         Row(modifier = Modifier.weight(1f, false)) {
+
+
             Column(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -64,7 +74,7 @@ fun MainMenuScreen(
                 games.forEach { game ->
                     SelectGameButton(
                         labelResourceId = game,
-                        onClick = {  onNextButtonClicked(game) }
+                        onClick = {  onGameSelected(game) }
                     )
                 }
             }
