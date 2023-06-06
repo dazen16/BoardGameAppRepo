@@ -59,7 +59,7 @@ fun JoinGameScreen(
             // viewModel.setGame(it)
 
             Button(
-                modifier = Modifier.weight(1f),
+                // modifier = Modifier.weight(1f),
                 onClick = onJoin
             ) {
                 Text(stringResource(R.string.join))

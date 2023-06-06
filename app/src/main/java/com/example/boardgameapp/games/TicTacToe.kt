@@ -121,7 +121,7 @@ fun checkTicTacToeWinner(board: MutableState<Array<Array<String?>>>): String? {
     }
 
     // Diagonal
-    if (board.value[0][2] != null && board.value[0][2] == board.value[1][1] && board.value[0][0] == board.value[2][0]) {
+    if (board.value[0][2] != null && board.value[0][2] == board.value[1][1] && board.value[0][2] == board.value[2][0]) {
         return board.value[0][2]
     }
 

@@ -5,13 +5,22 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardType
 import com.example.boardgameapp.R
 import com.example.boardgameapp.data.GameUIState
 import com.google.android.gms.nearby.connection.AdvertisingOptions
@@ -40,7 +49,9 @@ val SERVICE_ID = "com.example.boardgameapp"
 @Composable
 fun LobbyScreen(
     uiState: GameUIState,
+    gameID: String,
     modifier: Modifier = Modifier,
+    returnToMainScreen: () -> Unit = {},
 )  {
     Column(
         modifier = modifier,
@@ -63,6 +74,27 @@ fun LobbyScreen(
                 text = "Waiting Room",
                 style = MaterialTheme.typography.headlineSmall,
             )
+
+            Text(
+                text = gameID,
+                style = MaterialTheme.typography.headlineSmall,
+            )
+
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_medium)))
+
+            Button(onClick = returnToMainScreen) {
+                Text(text = "Main Menu")
+            }
+
+            Spacer(modifier = Modifier.height(dimensionResource(R.dimen.padding_medium)))
+
+            Text(
+                text = "Players Connected",
+                style = MaterialTheme.typography.headlineSmall,
+            )
+
+            DisplayConnectedPlayers()
+
         }
     }
     // Display way for players connect
@@ -73,6 +105,23 @@ fun LobbyScreen(
 
     // Start Game button going to game screen
 }
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun DisplayConnectedPlayers(modifier: Modifier = Modifier) {
+
+
+    TextField(
+        value = "",
+        onValueChange = { },
+        modifier = modifier,
+        // singleLine = true,
+        keyboardOptions = KeyboardOptions(),
+        label = {  }
+    )
+
+}
+
 /* Nearby connections API
 private fun startAdvertising() {
     val advertisingOptions: AdvertisingOptions = AdvertisingOptions.Builder().setStrategy(STRATEGY).build()

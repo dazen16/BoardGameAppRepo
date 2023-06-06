@@ -36,6 +36,7 @@ import com.example.boardgameapp.ui.JoinGameScreen
 import com.example.boardgameapp.ui.LobbyScreen
 import com.example.boardgameapp.ui.SelectDevicesScreen
 import com.example.boardgameapp.ui.theme.MainMenuScreen
+import kotlin.random.Random
 
 
 enum class GameScreen(@StringRes val title: Int) {
@@ -138,6 +139,8 @@ fun BoardGameApp(
             composable(route = GameScreen.Lobby.name) {
                 LobbyScreen(
                     uiState,
+                    generateGameID(),
+                    returnToMainScreen = { returnToMain(navController) },
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(dimensionResource(R.dimen.padding_medium))
@@ -157,7 +160,7 @@ fun BoardGameApp(
             composable(route = GameScreen.Game.name) {
                 BoardGameScreen(
                     uiState,
-                    returnToMainScreen = { navController.navigate(GameScreen.Start.name) },
+                    returnToMainScreen = { returnToMain(navController) },
                     modifier = Modifier
                         .fillMaxSize()
                         .padding(dimensionResource(R.dimen.padding_medium))
@@ -167,5 +170,24 @@ fun BoardGameApp(
         }
 
 
+    }
+}
+
+fun generateGameID(): String {
+    var newID = ""
+
+    val nextValues = List(6) { Random.nextInt(0, 9) }
+
+    for (randVal in nextValues) {
+        newID += randVal
+    }
+    val ret = newID
+    return ret
+}
+
+fun returnToMain(navController: NavHostController) {
+    navController.navigate(GameScreen.Start.name)
+    while (navController.previousBackStackEntry != null) {
+        navController.navigateUp()
     }
 }
